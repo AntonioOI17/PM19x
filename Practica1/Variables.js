@@ -21,3 +21,9 @@ console.log(cuadrado2(6));
 
 //tercer ejercicio
 
+const saludoPersonalizado = (nombre, edad) => {
+    return `Hola, me llamo   ${nombre} y tengo ${edad} años.`
+};
+
+console.log(saludoPersonalizado("Antonio", 21));
+
