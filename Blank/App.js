@@ -1,38 +1,33 @@
-//importaciones
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import React,{useState} from 'react';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-web";
+import React, { useState } from "react";
 
-const Texto = () => {
-  const [contenido, setContenido] = useState('Hola Mundo');
-  const actualizaTexto = () => setContenido('State Modificado');
-  
-
+const Texto = ({ style }) => {
+  const [contenido, setContenido] = useState("Hola Mundo");
+  const actualizarTexto = () => {
+    setContenido("State Modificado");
+  };
   return (
-    <View>
-      <Text onPress={actualizaTexto}> {contenido} </Text>
-      
-    </View>
+    <Text style={[styles.text, style]} onPress={actualizarTexto}>
+      {" "}
+      {contenido}{" "}
+    </Text>
   );
 };
 
-//Main
 export default function App() {
-  const [textoboton, setTextoboton] = useState('Tócame');
-  const actualizaBoton = () => setTextoboton('Siuuuuu');
-  <Button title={textoboton} onPress={actualizaBoton} />
+  const [contenido, setContenido] = useState("Tocame");
+  const actualizarBoton = () => {
+    setContenido("Siuuuu");
+  };
   return (
-    //
-    
     <View style={styles.container}>
       <StatusBar style="auto" />
-
-      <Texto></Texto>
-      <Texto></Texto>
-      <Texto></Texto>
-
-      <Button title={textoboton} onPress={actualizaBoton} />
-
+      <Texto style={styles.rojo}></Texto>
+      <Texto style={styles.verde}></Texto>
+      <Texto style={styles.amarillo}></Texto>
+      <Button onPress={actualizarBoton} title={contenido}></Button>
     </View>
   );
 }
@@ -40,8 +35,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#003",
+    alignItems: "center",
+    justifyContent: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "column",
   },
+  text: {
+    color: "white",
+    fontSize: 28,
+    width: 100,
+    height: 100,
+  },
+  rojo: { backgroundColor: "red" },
+  amarillo: { backgroundColor: "yellow" },
+  verde: { backgroundColor: "green" },
 });
