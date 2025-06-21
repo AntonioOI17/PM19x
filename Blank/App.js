@@ -1,33 +1,64 @@
+//importaciones
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { Button } from "react-native-web";
+import { StyleSheet, Text, View, Button, Alert, Platform } from "react-native";
 import React, { useState } from "react";
 
-const Texto = ({ style }) => {
-  const [contenido, setContenido] = useState("Hola Mundo");
-  const actualizarTexto = () => {
-    setContenido("State Modificado");
-  };
-  return (
-    <Text style={[styles.text, style]} onPress={actualizarTexto}>
-      {" "}
-      {contenido}{" "}
-    </Text>
-  );
+const showAlert = (message) => {
+  if (Platform.OS === 'web') {
+    window.alert(message);
+  } else {
+    Alert.alert('Alert', message);
+  }
 };
 
 export default function App() {
-  const [contenido, setContenido] = useState("Tocame");
-  const actualizarBoton = () => {
-    setContenido("Siuuuu");
-  };
+
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>React Native Button Test</Text>
+
+      <View style={styles.section}>
+        <Text style={styles.description}>Boton basico </Text>
+        <Button
+          title='Presioname'
+          onPress={() => showAlert('Boton presionado')}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.description}>Boton presionado</Text>
+        <Button
+          title='Boton de color'
+          color="#841584"
+          onPress={() => showAlert('Boton de color presionado')}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.description}>Boton desabilitado</Text>
+        <Button
+          title='Boton desabilitado'
+          disabled
+          onPress={() => showAlert('Boton de color presionado')}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.description}>Dos botones</Text>
+        <View style={styles.buttonRow}>
+          <Button
+            title='Izquierda'
+            onPress={() => showAlert('Boton Izquierda presionado')}
+          />
+          <View style={styles.buttonSpacer} />
+          <Button
+            title='Derecha'
+            onPress={() => showAlert('Boton Derecha presionado')}
+          />
+        </View>
+      </View>
+
       <StatusBar style="auto" />
-      <Texto style={styles.rojo}></Texto>
-      <Texto style={styles.verde}></Texto>
-      <Texto style={styles.amarillo}></Texto>
-      <Button onPress={actualizarBoton} title={contenido}></Button>
     </View>
   );
 }
@@ -35,19 +66,31 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#003",
-    alignItems: "center",
-    justifyContent: "center",
-    justifyContent: "space-evenly",
-    flexDirection: "column",
+    padding: 20,
+    backgroundColor: 'white',
+    justifyContent: 'center',
   },
-  text: {
-    color: "white",
-    fontSize: 28,
-    width: 100,
-    height: 100,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    textAlign: 'center',
+    color: '#000000',
   },
-  rojo: { backgroundColor: "red" },
-  amarillo: { backgroundColor: "yellow" },
-  verde: { backgroundColor: "green" },
+  section: {
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 16,
+    marginBottom: 10,
+    color:'#333333'
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center'
+  },
+  buttonSpacer: {
+    width: 10,
+  },
 });
