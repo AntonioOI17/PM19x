@@ -2,16 +2,16 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function Profile({ navigation }) {
+export default function Detalle({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.iconRow}>
-        <Ionicons name="person-circle-outline" size={80} color="green" />
-        <Text style={styles.title}>Perfil de Usuario</Text>
+        <Ionicons name="information-circle-outline" size={80} color="green" />
+        <Text style={styles.title}>Detalle del Usuario</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Detalle')}>
-        <Text style={styles.buttonText}>Detalles de usuario</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+        <Text style={styles.buttonText}>Volver a Perfil</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     color: 'green',
   },
   button: {
-    backgroundColor: '#28A745',
+    backgroundColor: '#007BFF',
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
